@@ -41,8 +41,8 @@ def get_handle():
 def screenGrab():
     box = (0, 0, 1024, 1080)
     im = ImageGrab.grab(box)
-    #im.save('test_char.png', 'PNG')
-    return im
+    im.save('save.png', 'PNG')
+    #return im
 
 def isError1017():
     im = screenGrab()
@@ -102,15 +102,16 @@ def send0():
     time.sleep(0.5)
 
 
-# im = screenGrab()
+im = screenGrab()
 # print isCharSelectScreen()
 # print isError1017()
 
 
 
 handle = get_handle()
-# try moving the window to 0,0
-win32gui.MoveWindow(handle, 0, 0, None, None, True)
+
+# Move the window to 0,0 so measurements are accurate
+win32gui.MoveWindow(handle, 0, 0, 0, 0, True)
 
 
 exit()
