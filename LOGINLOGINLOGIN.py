@@ -48,10 +48,10 @@ def isError1017():
     im = screenGrab()
     # test to see if it's an error message
 
-    reference_code = (239, 194, 53)
+    reference_code = (255, 207, 57)
 
     error_code_pixels = [
-        im.getpixel((728, 466)),
+        # im.getpixel((728, 466)),
         im.getpixel((736, 465)),
         im.getpixel((739, 470)),
     ]
