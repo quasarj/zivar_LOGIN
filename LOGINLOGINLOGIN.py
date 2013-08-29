@@ -49,25 +49,17 @@ def isError1017():
     # test to see if it's an error message
 
     reference_code = (239, 194, 53)
-    reference_background = (16, 16, 16)
 
     error_code_pixels = [
-        im.getpixel((728, 646)),
-        im.getpixel((746, 647)),
-        im.getpixel((746, 652)),
+        im.getpixel((728, 466)),
+        im.getpixel((736, 465)),
+        im.getpixel((739, 470)),
     ]
 
-    box_background_pixels = [
-        im.getpixel((681, 620)),
-        im.getpixel((379, 636)),
-    ]
+    print error_code_pixels
 
     for p in error_code_pixels:
         if p != reference_code:
-            return False
-
-    for p in box_background_pixels:
-        if p != reference_background:
             return False
 
     return True
@@ -76,16 +68,10 @@ def isCharSelectScreen():
     im = screenGrab()
     # white char box and realm square
     white_stuff = [
-        im.getpixel((587, 92)),
-        im.getpixel((661, 92)),
-        im.getpixel((709, 117)),
-        im.getpixel((580, 149)),
-        im.getpixel((676, 163)),
-
-        # character name, gaurantees loaded
-        im.getpixel((632, 179)),
-        im.getpixel((664, 177)),
-        im.getpixel((616, 177)),
+        im.getpixel((596, 82)),
+        im.getpixel((740, 82)),
+        im.getpixel((737, 102)),
+        im.getpixel((590, 102)),
     ]
 
     print white_stuff
