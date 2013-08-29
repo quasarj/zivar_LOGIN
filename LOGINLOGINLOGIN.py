@@ -41,8 +41,8 @@ def get_handle():
 def screenGrab():
     box = (0, 0, 1024, 1080)
     im = ImageGrab.grab(box)
-    im.save('save.png', 'PNG')
-    #return im
+    # im.save('save.png', 'PNG')
+    return im
 
 def isError1017():
     im = screenGrab()
@@ -100,7 +100,7 @@ handle = get_handle()
 win32gui.MoveWindow(handle, 0, 0, 0, 0, True)
 
 
-exit()
+#exit()
 
 
 print "waiting 2 seconds"
