@@ -102,15 +102,19 @@ def send0():
     time.sleep(0.5)
 
 
-im = screenGrab()
-print isCharSelectScreen()
-print isError1017()
-
-#exit()
+# im = screenGrab()
+# print isCharSelectScreen()
+# print isError1017()
 
 
 
 handle = get_handle()
+# try moving the window to 0,0
+win32gui.MoveWindow(handle, 0, 0, None, None, True)
+
+
+exit()
+
 
 print "waiting 2 seconds"
 time.sleep(2)
