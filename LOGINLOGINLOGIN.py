@@ -12,9 +12,7 @@ import win32con
 
 
 def windowEnumerationHandler(hwnd, resultList):
-
-    '''Pass to win32gui.EnumWindows() to generate list of window handle, window text tuples.'''
-
+    """Callback"""
     resultList.append((hwnd, win32gui.GetWindowText(hwnd)))
 
 def sendKeys(handle):
@@ -39,21 +37,21 @@ def get_handle():
     return handle
 
 def screenGrab():
-    box = (0, 0, 1024, 1080)
+    box = (0, 0, 1024, 768)
     im = ImageGrab.grab(box)
-    # im.save('save.png', 'PNG')
+    #im.save('save.png', 'PNG')
     return im
 
 def isError1017():
     im = screenGrab()
     # test to see if it's an error message
 
-    reference_code = (255, 207, 57)
+    reference_code = (239, 194, 53)
 
     error_code_pixels = [
-        # im.getpixel((728, 466)),
-        im.getpixel((736, 465)),
-        im.getpixel((739, 470)),
+        im.getpixel((728, 464)),
+        im.getpixel((746, 468)),
+        im.getpixel((746, 472)),
     ]
 
     print error_code_pixels
@@ -68,10 +66,10 @@ def isCharSelectScreen():
     im = screenGrab()
     # white char box and realm square
     white_stuff = [
-        im.getpixel((596, 82)),
-        im.getpixel((740, 82)),
-        im.getpixel((737, 102)),
-        im.getpixel((590, 102)),
+        im.getpixel((611, 54)),
+        im.getpixel((666, 55)),
+        im.getpixel((623, 76)),
+        im.getpixel((588, 105)),
     ]
 
     print white_stuff
@@ -85,21 +83,20 @@ def isCharSelectScreen():
 
 def send0():
     sendKeys(handle)
-    time.sleep(0.5)
+    time.sleep(0.75)
 
 
-im = screenGrab()
-# print isCharSelectScreen()
-# print isError1017()
 
-
+# setup stuff
 
 handle = get_handle()
 
-# Move the window to 0,0 so measurements are accurate
-win32gui.MoveWindow(handle, 0, 0, 0, 0, True)
+# Move the window to 0,0 and resize it
+# make sure the game is in borderless windowed mode!
+win32gui.MoveWindow(handle, 0, 0, 1024, 768, True)
 
 
+#screenGrab()
 #exit()
 
 
@@ -113,17 +110,19 @@ send0()
 while True:
     # wait for the character screen
     while not isCharSelectScreen():
-        print "Character not loading?"
+        print("Waiting for character screen to load...")
         time.sleep(1)
+    print("Detected character screen!")
 
     send0()
     send0()
 
     # now find the error screen
     while not isError1017():
-        print "Error not loading?"
+        print("Waiting for error screen to load...")
         time.sleep(1)
 
+    print("Detected error screen. Sorry, you didn't make it this time :(")
 
     send0()
     send0()
