@@ -47,10 +47,10 @@ def is_1017():
     """Test to see if the 1017 error is currently displayed"""
     im = grab_game_window()
 
-    reference_code = (239, 194, 53)
+    reference_code = (238, 190, 48)
 
     error_code_pixels = [
-        im.getpixel((728, 464)),
+            #im.getpixel((728, 464)),
         im.getpixel((746, 468)),
         im.getpixel((746, 472)),
     ]
@@ -86,7 +86,7 @@ def is_char_screen():
 def send_0():
     """Send key, and wait a bit"""
     sendkey(handle)
-    time.sleep(0.75)
+    time.sleep(1)
 
 
 # setup stuff
